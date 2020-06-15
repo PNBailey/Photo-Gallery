@@ -1,0 +1,16 @@
+
+<header>
+    <div class="title-container">
+        <a routerLink="gallery-list" class="navbar-title threeSec">BAILEY PHOTOGRAPHY</a>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a routerLink="gallery-list" class="fourSec">Gallery</a></li>
+            <li><a routerLink="albums" class="twoSec">Albums</a></li>
+            <li *ngIf="isLoggedIn"><a routerLink="favourites" class="twoSec">Favourites</a></li>
+            <li><a (click)="onLoginOrOut()" class="twoSec">{{ isLoggedIn ? 'Log Out' : 'Log In' }}</a></li>
+            <li><a routerLink="cart" class="fourSec">Cart</a></li>
+        </ul>
+    </nav>
+</header>
+

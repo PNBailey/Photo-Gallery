@@ -1,0 +1,111 @@
+
+  input.ng-invalid.ng-touched {
+      border: red solid 2px;
+  }
+  
+  .log-in-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      width: 100%;
+      margin:100px 0 0 0;
+      flex-direction: column;
+  
+  }
+  
+  .log-in {
+      display: flex;
+      flex-direction: column;
+      width: 450px;
+      height: 400px;
+      border: black 2px solid;
+      align-items: center;
+      margin-bottom: 38px;
+      padding-top: 45px;
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;         /* Opera/IE 8+ */
+      background: grey;
+  }
+  
+  input {
+      margin-top: 10px;
+      width: 200px;
+      background: white;
+  }
+  
+  label {
+      margin: 20px 0 0 123px;
+      align-self: flex-start;
+      background: none;
+  }
+
+  span {
+    background: none;
+  }
+
+  a {
+      background: grey;
+  }
+  
+  .Log-in-btn {
+      margin: 30px 140px 0 0;
+      /* align-self: flex-start; */
+      border-radius: 2px;
+      border: none;
+      box-shadow: none;
+      background-color: orange;
+      height: 30px;
+      width: 60px;
+      cursor: pointer;
+  
+  }
+  
+  .forgotten-password {
+      margin: 20px 0 20px 123px;
+      align-self: flex-start;
+      cursor: pointer;
+
+  }
+  
+  .register {
+      margin: 5px 0 0 123px;
+      align-self: flex-start;
+      cursor: pointer;
+  }
+  
+  .switch-btn {
+      margin: 20px 110px 0 0;
+      align-self: flex-start;
+      border-radius: 2px;
+      border: none;
+      box-shadow: none;
+      background-color: orange;
+      height: 35px;
+      width: 90px;
+      cursor: pointer;
+      padding: 0;
+  }
+  
+  .error-message {
+      margin: 10px 0 0 0;
+      border: 2px;
+      border-color: rgb(172, 3, 3);
+      background-color: rgba(255, 0, 0, 0.384);
+      width: 210px;
+      text-align: center;
+      height: 30px;
+      position: absolute;
+      top: 155px;
+  }
+  
+  .error-message-text {
+      margin:5px 0;
+  }
+  
+  .label-email {
+      margin-top: 17px;
+  }
+  
+  

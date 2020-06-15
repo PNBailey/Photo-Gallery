@@ -1,0 +1,484 @@
+
+
+.overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    z-index: 4;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
+  }
+
+  .full-view-container {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      display: grid;
+      grid-template: 1fr / 1fr;
+      /* width: 600px; */
+  }
+
+   .overlay-inner-portrait {
+    background: white;
+    width: 450px;
+    height: 580px;
+    padding: 20px;
+    grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      display: grid;
+      grid-template: 1fr / 1fr;
+      align-items: end;
+  }
+
+  @media only screen and (max-width: 515px) {
+      .overlay-inner-portrait {
+        width: 370px;
+        height: 500px;
+      }
+  }
+
+  @media only screen and (max-width: 445px) {
+    .overlay-inner-portrait {
+      width: 310px;
+      height: 440px;
+    }
+}
+  
+  .overlay-inner-landscape {
+    background: white;
+    padding: 20px;
+    width: 600px;
+    grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      display: grid;
+      grid-template: 1fr / 1fr;
+      align-items: end;
+  } 
+
+  @media only screen and (max-width: 678px) {
+    .overlay-inner-landscape {
+      width: 560px;
+      height: 410px;
+    }
+}
+
+@media only screen and (max-width: 618px) {
+    .overlay-inner-landscape {
+      width: 520px;
+      height: 370px;
+    }
+}
+
+@media only screen and (max-width: 574px) {
+    .overlay-inner-landscape {
+      width: 480px;
+      height: 330px;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .overlay-inner-landscape {
+      width: 440px;
+      height: 305px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .overlay-inner-landscape {
+      width: 390px;
+      height: 260px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .overlay-inner-landscape {
+      width: 340px;
+      height: 220px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .overlay-inner-landscape {
+      width: 290px;
+      height: 190px;
+    }
+}
+
+  .overlay img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-likes-comments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    align-self: end;
+    justify-items: center;
+  }
+
+  .image-likes-comments {
+    background: rgba(0, 0, 0, 0.692);
+    color: white;
+    height: 70px;
+  }
+
+  .image-likes-comments * {
+      background: none;
+  }
+
+  .heart-icon {
+      color: red;
+  }
+
+  .comments-tag {
+      cursor: pointer;
+  }
+
+  .likes-tag {
+      cursor: default;
+  }
+
+  .existing-comments-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    align-self: end;
+    max-height: 100px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.685); 
+}
+
+
+.existing-comments {
+    background: rgba(172, 171, 171, 0.616);
+    color: white;
+    margin:10px 10px 10px 30px;
+    border-radius: 4px;
+    width: fit-content;
+
+}
+
+.commentor-name {
+    background: none;
+    margin: 10px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+  .comment {
+    word-wrap: break-word;
+    white-space: pre-line;
+    overflow: hidden;
+    max-width: 400px;
+    background: none;
+    margin: 10px;
+    padding-right: 10px;
+
+  }
+
+  .close-icon {
+      background: none;
+      color: white;
+      height: 30px;
+      width: 30px;
+      justify-self: end;
+      position: fixed;
+      cursor: pointer;
+  }
+
+  .close-icon-no-comments {
+      background: white;
+      color: black;
+      justify-self: end;
+      height: 30px;
+      width: 30px;
+      position: fixed;
+      cursor: pointer;
+  }
+
+  .input-button {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 60px;
+  }
+
+  .comments-input {
+    background: white;
+  }
+
+  .post-button {
+      color: white;
+      background: rgb(16, 60, 180);
+  }
+
+/* 
+
+.overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    z-index: 4;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 300px;
+  }
+
+  .overlay-inner {
+      justify-self: center;
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+  }
+
+
+  .overlay-inner-portrait {
+    background: white;
+    width: 450px;
+    height: 580px;
+    padding: 20px;
+  }
+
+  .overlay-inner-portrait > img {
+    height: 575px;
+  }
+
+  .overlay-inner-landscape {
+    background: white;
+    padding: 20px;
+    width: 600px;
+  }
+
+  .overlay img {
+    width: 100%;
+  }
+
+  button {
+    text-decoration: none;
+    background: none;
+    cursor: pointer;
+    
+  }
+
+  div.comments-container, div.comments-container * {
+    color: black;
+    background: white;
+  }
+
+  .existing-comments-container {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+
+  .comments-container {
+      margin-right: 80px;
+      border-radius: 2px;
+      border: grey 2px solid;
+      width: 300px;
+      display: grid;
+  }
+
+  .image-likes-comments {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: space-around;
+      align-items: center;
+      padding: 0 20px 0 20px;
+      margin-bottom: 0px;
+      height: 35px;
+  }
+
+  .heart-icon {
+      color: red !important;
+      align-self: center;
+      margin-right: 5px;
+  }
+ 
+  .input-button {
+      display: grid;
+      grid-template-columns: 225px 1fr;
+      padding: 0 5px 5px 5px;
+      height: 20px;
+      background: white;
+      
+  }
+
+  .comments-input {
+      border-radius: 2px;
+      background: white;
+      border: 1px solid rgb(117, 115, 115);
+  }
+
+  .post-button {
+    border-radius: 2px;
+    background: rgb(4, 146, 212) !important;
+    border: 0;
+    color: white !important;
+    
+  }
+
+  .existing-comments, .existing-comments *  {
+      background: rgb(221, 221, 221) !important;
+      display: grid;
+      margin: 10px;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-line;
+      overflow: hidden;
+  }
+
+  .commentor-name {
+      padding-top: 5px;
+      font-weight: bold;
+  }
+
+  .comment {
+      padding-bottom: 5px;
+  } */
+
+
+
+ 
+
+
+/* OLD */
+
+/* 
+.overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    z-index: 4;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 300px auto 300px;
+  }
+
+
+  .overlay-inner-portrait {
+    background: white;
+    width: 450px;
+    height: 580px;
+    padding: 20px;
+  }
+
+  .overlay-inner-portrait > img {
+    height: 575px;
+  }
+
+  .overlay-inner-landscape {
+    background: white;
+    padding: 20px;
+    width: 600px;
+  }
+
+  .overlay img {
+    width: 100%;
+  }
+
+  button {
+    text-decoration: none;
+    background: none;
+    cursor: pointer;
+    
+  }
+
+  div.comments-container, div.comments-container * {
+    color: black;
+    background: white;
+  }
+
+  .existing-comments-container {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+
+  .comments-container {
+      margin-right: 80px;
+      border-radius: 2px;
+      border: grey 2px solid;
+      width: 300px;
+      display: grid;
+  }
+
+  .image-likes-comments {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: space-around;
+      align-items: center;
+      padding: 0 20px 0 20px;
+      margin-bottom: 0px;
+      height: 35px;
+  }
+
+  .heart-icon {
+      color: red !important;
+      align-self: center;
+      margin-right: 5px;
+  }
+ 
+  .input-button {
+      display: grid;
+      grid-template-columns: 225px 1fr;
+      padding: 0 5px 5px 5px;
+      height: 20px;
+      background: white;
+      
+  }
+
+  .comments-input {
+      border-radius: 2px;
+      background: white;
+      border: 1px solid rgb(117, 115, 115);
+  }
+
+  .post-button {
+    border-radius: 2px;
+    background: rgb(4, 146, 212) !important;
+    border: 0;
+    color: white !important;
+    
+  }
+
+  .existing-comments, .existing-comments *  {
+      background: rgb(221, 221, 221) !important;
+      display: grid;
+      margin: 10px;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-line;
+      overflow: hidden;
+  }
+
+  .commentor-name {
+      padding-top: 5px;
+      font-weight: bold;
+  }
+
+  .comment {
+      padding-bottom: 5px;
+  }
+
+
+
+  */

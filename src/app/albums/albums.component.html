@@ -1,0 +1,7 @@
+<div class="container">
+    <div *ngFor="let album of albums" class="album">
+        <img class="album-cover" [src]="album.albumCoverPhotoUrl" alt="album.name" (click)="onAlbumSelect(album.id)">
+        <p class="album-name">{{ album.name }}</p>
+    </div>
+</div>
+

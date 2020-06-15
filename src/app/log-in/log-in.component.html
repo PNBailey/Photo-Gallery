@@ -1,0 +1,27 @@
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+<form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+    <div class="log-in-container">
+        <div class="log-in">
+            <div class="error-message" *ngIf="error">
+                <p class="error-message-text">{{ error }}</p>
+            </div>
+            <label class="label-email" for="email">Email</label>
+            <input type="text" id="email" name="email" formControlName="email">
+            <label *ngIf="!isLoginMode" class="label-name" for="name">Full Name</label>
+            <input *ngIf="!isLoginMode" type="text" id="name" name="name" formControlName="name"> 
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" formControlName="password" minlength="6">
+            <span>
+                <button class="Log-in-btn" type="submit">{{ isLoginMode ? 'Login' : 'SignUp' }}</button>
+            </span>
+            <span>
+                <button class="switch-btn" (click)="onSwitchMode()" type="button">Switch to
+                    {{ isLoginMode ? 'Sign  Up' : 'Login' }}</button>
+            </span>
+            <div *ngIf="isLoginMode" class="forgotten-password">
+                <a>Forgotten Password?</a>
+            </div>
+        </div>
+    </div>
+</form>

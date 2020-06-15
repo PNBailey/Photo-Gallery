@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    margin-top: 135px;
+    gap: 10px;
+    justify-items: center;
+    
+}
+
+.album {
+    background: rgb(32, 32, 32);
+    border: 1px rgba(54, 54, 247, 0.76);
+    display: grid;
+    /* height: 300px; */
+    grid-template-rows: 260px 30px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 3px;
+    align-items: center;
+    cursor: pointer;
+}
+
+img {
+    height: 250px;
+    width: 300px;
+    overflow: hidden;
+}
+
+p {
+    background: rgb(32, 32, 32);
+
+}
+
+
+
+
+
+/* 
+
+
+ul {
+    margin: 165px 0 0 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 90vh;
+}
+
+img {
+    height: 250px;
+    width: 300px;
+}
+
+
+.album-name {
+    text-align: center;
+} */

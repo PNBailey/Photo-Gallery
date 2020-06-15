@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  background: black;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  } 
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  } 
+  
+  /* Handle */
+   ::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+  }
