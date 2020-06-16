@@ -23,7 +23,7 @@
       margin-bottom: 38px;
       padding-top: 15px;
       background: grey;
-      /* justify-content: center; */
+      justify-content: center;
   }
   
   input {
