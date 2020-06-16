@@ -1,37 +1,44 @@
-<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
 <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
     <div class="log-in-container">
-        <div class="log-in">
-            <div class="error-message" *ngIf="error">
-                <p class="error-message-text">{{ error }}</p>
-            </div> 
+        <div class="error-message" *ngIf="error">
+            <p class="error-message-text">{{ error }}</p>
+        </div>
 
-            <!--Log in screen-->
+        <!--Log in screen-->
+        <div *ngIf="isLoginMode" class="log-in">
             <label *ngIf="isLoginMode" class="label-email" for="email">Email</label>
             <input *ngIf="isLoginMode" type="text" id="email" name="email" formControlName="email">
             <label *ngIf="isLoginMode" for="password">Password</label>
-            <input *ngIf="isLoginMode" type="password" id="password" name="password" formControlName="password" minlength="6">
+            <input *ngIf="isLoginMode" type="password" id="password" name="password" formControlName="password"
+                minlength="6">
             <button *ngIf="isLoginMode" class="Log-in-btn" type="submit">Log in</button>
-            <button *ngIf="isLoginMode" class="switch-btn" (click)="switchToSignUp()" type="button">Switch to Sign Up</button>
-            <a *ngIf="isLoginMode" (click)="switchToForgottenPassword()" class="forgotten-password">Forgotten Password</a>
+            <button *ngIf="isLoginMode" class="switch-btn" (click)="switchToSignUp()" type="button">Switch to Sign
+                Up</button>
+            <a *ngIf="isLoginMode" (click)="switchToForgottenPassword()" class="forgotten-password">Forgotten
+                Password</a>
+        </div>
 
-            <!--Forgotten password screen-->
+        <!--Forgotten password screen-->
+        <div *ngIf="forgottenPasswordMode" class="log-in">
             <label *ngIf="forgottenPasswordMode" class="label-new-password" for="newPassword">New Password</label>
-            <input  *ngIf="forgottenPasswordMode" type="password" id="newPassword" name="newPassword" formControlName="password">
+            <input *ngIf="forgottenPasswordMode" type="password" id="newPassword" name="newPassword"
+                formControlName="password">
             <button *ngIf="forgottenPasswordMode" class="Log-in-btn" type="submit"> Submit </button>
-            <button *ngIf="forgottenPasswordMode" class="switch-btn" (click)="switchToLogIn()" type="button">Back to Login</button>
+            <button *ngIf="forgottenPasswordMode" class="switch-btn" (click)="switchToLogIn()" type="button">Back to
+                Login</button>
+        </div>
 
-            <!--Sign up screen-->
+        <!--Sign up screen-->
+        <div *ngIf="signUpMode" class="log-in">
             <label *ngIf="signUpMode" class="label-name" for="name">Full Name</label>
-            <input *ngIf="signUpMode" type="text" id="name" name="name" formControlName="name"> 
+            <input *ngIf="signUpMode" type="text" id="name" name="name" formControlName="name">
             <label *ngIf="signUpMode" class="label-email" for="email">Email</label>
             <input *ngIf="signUpMode" type="text" id="email" name="email" formControlName="email">
             <label *ngIf="signUpMode" for="password">Password</label>
             <input *ngIf="signUpMode" type="password" id="password" name="password" formControlName="password">
             <button *ngIf="signUpMode" class="Log-in-btn" type="submit">Sign Up</button>
-            <button *ngIf="signUpMode" class="switch-btn" (click)="switchToLogIn()" type="button">Switch to Log in</button>
-            
+            <button *ngIf="signUpMode" class="switch-btn" (click)="switchToLogIn()" type="button">Switch to Log
+                in</button>
         </div>
     </div>
 </form>
