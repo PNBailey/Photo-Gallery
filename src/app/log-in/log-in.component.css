@@ -48,44 +48,11 @@
   a {
       background: grey;
   }
-  
-  .Log-in-btn {
-      margin: 30px 140px 0 0;
-      /* align-self: flex-start; */
-      border-radius: 2px;
-      border: none;
-      box-shadow: none;
-      background-color: orange;
-      height: 30px;
-      width: 60px;
-      cursor: pointer;
-  
-  }
+
   
   .forgotten-password {
-      margin: 20px 0 20px 123px;
-      align-self: flex-start;
+      margin: 10px 0;
       cursor: pointer;
-
-  }
-  
-  .register {
-      margin: 5px 0 0 123px;
-      align-self: flex-start;
-      cursor: pointer;
-  }
-  
-  .switch-btn {
-      margin: 20px 110px 0 0;
-      align-self: flex-start;
-      border-radius: 2px;
-      border: none;
-      box-shadow: none;
-      background-color: orange;
-      height: 35px;
-      width: 90px;
-      cursor: pointer;
-      padding: 0;
   }
   
   .error-message {
@@ -106,6 +73,16 @@
   
   .label-email {
       margin-top: 17px;
+  }
+
+  button {
+      padding: 10px;
+      height: auto;
+      border-radius: 2px;
+      border: none;
+      box-shadow: none;
+      background-color: orange;
+      margin: 10px 0;
   }
   
   

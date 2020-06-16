@@ -17,7 +17,8 @@ export class LogInComponent implements OnInit {
   logInForm: FormGroup;
 
   isLoginMode = true;
-
+  forgottenPasswordMode = false;
+  signUpMode = false;
   error: string = null;
 
   constructor(
@@ -27,8 +28,26 @@ export class LogInComponent implements OnInit {
     private dataStorageService: DataStorageService
     ) { }
 
-  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode; 
+  // onSwitchMode() {
+  //   this.isLoginMode = !this.isLoginMode; 
+  // }
+
+  switchToLogIn() {
+    this.forgottenPasswordMode = false;
+    this.signUpMode = false;
+    this.isLoginMode = true;
+  }
+
+  switchToSignUp() {
+    this.forgottenPasswordMode = false;
+    this.isLoginMode = false;
+    this.signUpMode = true;
+  }
+
+  switchToForgottenPassword() {
+    this.isLoginMode = false;
+    this.signUpMode = false;
+    this.forgottenPasswordMode = true;
   }
 
   ngOnInit() {
