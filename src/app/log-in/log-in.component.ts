@@ -16,10 +16,12 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
 export class LogInComponent implements OnInit {
   logInForm: FormGroup;
 
-  isLoginMode = true;
-  forgottenPasswordMode = false;
-  signUpMode = false;
+  // isLoginMode = true;
+  // forgottenPasswordMode = false;
+  // signUpMode = false;
   error: string = null;
+
+  mode: string = 'logIn';
 
   constructor(
     private router: Router, 
@@ -28,27 +30,10 @@ export class LogInComponent implements OnInit {
     private dataStorageService: DataStorageService
     ) { }
 
-  // onSwitchMode() {
-  //   this.isLoginMode = !this.isLoginMode; 
-  // }
-
-  switchToLogIn() {
-    this.forgottenPasswordMode = false;
-    this.signUpMode = false;
-    this.isLoginMode = true;
-  }
-
-  switchToSignUp() {
-    this.forgottenPasswordMode = false;
-    this.isLoginMode = false;
-    this.signUpMode = true;
-  }
-
-  switchToForgottenPassword() {
-    this.isLoginMode = false;
-    this.signUpMode = false;
-    this.forgottenPasswordMode = true;
-  }
+    switchMode(chosenMode: string) {
+      this.mode = chosenMode;
+      console.log(this.mode);
+    }
 
   ngOnInit() {
         this.logInForm = new FormGroup({
@@ -72,7 +57,7 @@ export class LogInComponent implements OnInit {
 
       let authObs: Observable<AuthResponseData>;
 
-      if(this.isLoginMode) {
+      if(this.mode === 'logIn') {
         authObs = this.logInService.logIn(email, password);
 
       } else {
@@ -81,7 +66,7 @@ export class LogInComponent implements OnInit {
       }
 
         authObs.subscribe(resData => {
-          if(!this.isLoginMode) {
+          if(this.mode !== 'logIn') {
             this.usersService.addUser(newUser);
             this.dataStorageService.addUsers();
           }
