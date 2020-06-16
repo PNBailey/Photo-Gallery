@@ -1,6 +1,7 @@
 <div class="overlay">
     <div class="full-view-container">
-        <div [ngClass]="{'overlay-inner-landscape' : image.Orientation === 'Landscape', 'overlay-inner-portrait' : image.Orientation === 'Portrait'}" class="overlay-inner">
+        <div [ngClass]="{'overlay-inner-landscape' : image.Orientation === 'Landscape', 'overlay-inner-portrait' : image.Orientation === 'Portrait'}"
+            class="overlay-inner">
             <img [src]="image.imagePath" alt="photo" (click)="closeImage()">
         </div>
         <span *ngIf="!viewingComments && isLoggedIn" class="image-likes-comments">
@@ -9,73 +10,19 @@
             </p>
             <p (click)="viewComments()" class="comments-tag">{{comments.length}} Comments</p>
         </span>
-        <ion-icon *ngIf="comments.length <= 0 && viewingComments" class="close-icon-no-comments" name="close-outline" (click)="closeComments()"></ion-icon>
+        <ion-icon *ngIf="comments.length <= 0 && viewingComments" class="close-icon-no-comments" name="close-outline"
+            (click)="closeComments()"></ion-icon>
         <div *ngIf="viewingComments" class="existing-comments-container">
-            <ion-icon *ngIf="comments.length > 0" class="close-icon" name="close-outline" (click)="closeComments()"></ion-icon>
+            <ion-icon *ngIf="comments.length > 0" class="close-icon" name="close-outline" (click)="closeComments()">
+            </ion-icon>
             <div class="existing-comments" *ngFor="let comment of comments">
                 <p class="commentor-name">{{comment.name}}</p>
                 <p class="comment">{{comment.usersComment}}</p>
             </div>
         </div>
-        <div  *ngIf="viewingComments" class="input-button">
+        <div *ngIf="viewingComments" class="input-button">
             <input type="text" class="comments-input" placeholder="Add comment" #usersInput>
             <button class="post-button" (click)="onComment(usersInput.value, image.imagePath)">Post</button>
-        </div> 
+        </div>
     </div>
-        
-    <!-- <div class="overlay-inner comments-container">
-        <span class="image-likes-comments">
-            <p> <ion-icon name="heart" class="heart-icon"></ion-icon>{{imageLikesNum(image.imagePath)}} Likes</p>
-            <p>{{comments.length}} Comments</p>
-        </span>
-        <hr>
-        <div class="existing-comments-container">
-            <div class="existing-comments" *ngFor="let comment of comments">
-                <p class="commentor-name">{{comment.name}}</p>
-                <p class="comment">{{comment.usersComment}}</p>
-            </div>
-        </div>
-        <div class="input-button">
-            <input type="text" class="comments-input" placeholder="Add comment" #usersInput>
-            <button class="post-button" (click)="onComment(usersInput.value, image.imagePath)">Post</button>
-        </div> -->
-
-    
 </div>
-
-
-
-<!-- <div class="overlay">
-    <div class="overlay-inner">
-        <div class="input-button">
-            <input type="text" class="comments-input">
-            <button clas="post-button">Post</button>
-        </div>
-        <div class="existing-comments">
-            <p>AD</p>
-            <p>asdqwc</p>
-        </div>
-    </div>
-    <div [ngClass]="{'overlay-inner-landscape' : image.Orientation === 'Landscape', 'overlay-inner-portrait' : image.Orientation === 'Portrait'}"
-        class="overlay-inner">
-        <img [src]="image.imagePath" alt="photo" (click)="closeImage()">
-    </div>
-    <div class="overlay-inner comments-container">
-        <span class="image-likes-comments">
-            <p> <ion-icon name="heart" class="heart-icon"></ion-icon>{{imageLikesNum(image.imagePath)}} Likes</p>
-            <p>{{comments.length}} Comments</p>
-        </span>
-        <hr>
-        <div class="existing-comments" *ngFor="let comment of comments">
-            <p class="commentor-name">{{comment.name}}</p>
-            <p class="comment">{{comment.usersComment}}</p>
-        </div>
-        <div class="input-button">
-            <input type="text" class="comments-input" placeholder="Add comment" #usersInput>
-            <button class="post-button" (click)="onComment(usersInput.value, image.imagePath)">Post</button>
-        </div>
-    </div>
-</div> -->
-
-
-<!-- <button (click)="closeImage()" class="close">× Close</button> -->

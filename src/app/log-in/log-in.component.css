@@ -1,4 +1,3 @@
-
   input.ng-invalid.ng-touched {
       border: red solid 2px;
   }
@@ -9,7 +8,7 @@
       align-items: center;
       height: 80vh;
       width: 100%;
-      margin:100px 0 0 0;
+      margin: 100px 0 0 0;
       flex-direction: column;
   
   }
@@ -22,11 +21,9 @@
       border: black 2px solid;
       align-items: center;
       margin-bottom: 38px;
-      padding-top: 45px;
-      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-      box-sizing: border-box;         /* Opera/IE 8+ */
+      padding-top: 15px;
       background: grey;
+      justify-content: center;
   }
   
   input {
@@ -40,52 +37,19 @@
       align-self: flex-start;
       background: none;
   }
-
-  span {
-    background: none;
-  }
+    
+  .label-email {
+    margin-top: 17px;
+}
 
   a {
       background: grey;
   }
-  
-  .Log-in-btn {
-      margin: 30px 140px 0 0;
-      /* align-self: flex-start; */
-      border-radius: 2px;
-      border: none;
-      box-shadow: none;
-      background-color: orange;
-      height: 30px;
-      width: 60px;
-      cursor: pointer;
-  
-  }
+
   
   .forgotten-password {
-      margin: 20px 0 20px 123px;
-      align-self: flex-start;
+      margin: 10px 0;
       cursor: pointer;
-
-  }
-  
-  .register {
-      margin: 5px 0 0 123px;
-      align-self: flex-start;
-      cursor: pointer;
-  }
-  
-  .switch-btn {
-      margin: 20px 110px 0 0;
-      align-self: flex-start;
-      border-radius: 2px;
-      border: none;
-      box-shadow: none;
-      background-color: orange;
-      height: 35px;
-      width: 90px;
-      cursor: pointer;
-      padding: 0;
   }
   
   .error-message {
@@ -102,10 +66,17 @@
   
   .error-message-text {
       margin:5px 0;
+      background: none;
   }
-  
-  .label-email {
-      margin-top: 17px;
+
+  button {
+      padding: 10px;
+      height: auto;
+      border-radius: 2px;
+      border: none;
+      box-shadow: none;
+      background-color: orange;
+      margin: 10px 0;
   }
   
   
