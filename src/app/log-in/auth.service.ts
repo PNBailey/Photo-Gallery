@@ -23,7 +23,7 @@ export interface AuthResponseData {
 
 
 @Injectable({providedIn: 'root'})
-export class LogInService {
+export class AuthService {
 
     
 private tokenExpirationTimer: any; 
@@ -165,13 +165,13 @@ returnSecureToken: true
 
     handleSubscriptionSuccess(mode: string, newUser: User) {
         if(mode === 'logIn') {
-            this.usersService.addUser(newUser);
-            this.dataStorageService.addUsers();
             this.router.navigate(['/gallery-list']);
           } else if (mode === 'forgottenPassword') {
             return true;
           } else {
             this.router.navigate(['/gallery-list']);
+            this.usersService.addUser(newUser);
+            this.dataStorageService.addUsers();
           }
     }
 

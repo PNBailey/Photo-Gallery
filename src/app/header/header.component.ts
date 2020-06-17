@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LogInService } from '../log-in/log-in.service';
+import { AuthService } from '../log-in/auth.service';
 import { Router } from '@angular/router';
 import { GalleryListService } from '../gallery-list/gallery-list.service';
 import { FavouritesService } from '../favourites/favourites.service';
@@ -16,10 +16,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userSub: Subscription;
   isLoggedIn = false;
 
-  constructor(private logInService: LogInService, private router: Router, private galleryListService: GalleryListService, private favouritesService: FavouritesService) { }
+  constructor(private authService: AuthService, private router: Router, private galleryListService: GalleryListService, private favouritesService: FavouritesService) { }
 
   ngOnInit() {
-    this.userSub = this.logInService.authUserSubject.subscribe(user => {
+    this.userSub = this.authService.authUserSubject.subscribe(user => {
       this.isLoggedIn = !!user;
     })
 
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLoginOrOut() {
     if(this.isLoggedIn) {
-      this.logInService.logOut();
+      this.authService.logOut();
     } else {
       this.router.navigate(['/log-in']);
     }

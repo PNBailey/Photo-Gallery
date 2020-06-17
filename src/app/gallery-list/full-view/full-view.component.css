@@ -196,13 +196,15 @@
   }
 
   .close-icon-no-comments {
-      background: white;
+      background: none;
       color: black;
       justify-self: end;
       height: 30px;
       width: 30px;
       position: fixed;
       cursor: pointer;
+      align-self: end;
+      margin-bottom: 30px;
   }
 
   .input-button {

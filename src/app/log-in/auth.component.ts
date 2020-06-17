@@ -1,31 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
-import { UsersService } from '../shared/user/users.service';
-import { LogInService } from './log-in.service';
+import { AuthService } from './auth.service';
 import { User } from '../shared/user/user.model';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
   selector: 'app-log-in',
-  templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.css']
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css']
 })
-export class LogInComponent implements OnInit {
+export class AuthComponent implements OnInit {
   logInForm: FormGroup;
   error: string = null;
   mode: string = 'logIn';
   passwordResetEmailSent = false;
 
   constructor(
-    private logInService: LogInService, 
-    private dataStorageService: DataStorageService
+    private authService: AuthService, 
     ) { }
 
     switchMode(chosenMode: string) {
       this.mode = chosenMode;
-      this.logInForm = this.logInService.getFormGroup(chosenMode);
+      this.logInForm = this.authService.getFormGroup(chosenMode);
       this.error = null;
       this.passwordResetEmailSent = false;
     }
@@ -52,28 +48,19 @@ export class LogInComponent implements OnInit {
       let authObs: Observable<any>;
 
       if(this.mode === 'logIn') {
-        authObs = this.logInService.logIn(email, password);
+        authObs = this.authService.logIn(email, password);
 
       } else if(this.mode === 'signUp') {
-        authObs = this.logInService.register(email, password);
+        authObs = this.authService.register(email, password);
 
       } else if(this.mode === 'forgottenPassword') {
-        authObs = this.logInService.changePassword(email);
+        authObs = this.authService.changePassword(email);
 
       }
 
         authObs.subscribe(() => {
 
-         this.passwordResetEmailSent = this.logInService.handleSubscriptionSuccess(this.mode, newUser);
-
-          // if(this.mode === 'logIn') {
-          //   this.usersService.addUser(newUser);
-          //   this.dataStorageService.addUsers();
-          // } else if (this.mode === 'forgottenPassword') {
-          //   this.passwordResetEmailSent = true;
-          // } else {
-          //   this.router.navigate(['/gallery-list']);
-          // }
+        this.passwordResetEmailSent = this.authService.handleSubscriptionSuccess(this.mode, newUser);
       
         this.error = null;
           
