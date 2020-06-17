@@ -5,7 +5,7 @@ import { AlbumsService } from '../albums/albums.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FavouritesService } from './../favourites/favourites.service'
-import { LogInService } from '../log-in/log-in.service';
+import { AuthService } from '../log-in/auth.service';
 import { UsersService } from '../shared/user/users.service';
 import { User } from '../shared/user/user.model';
 
@@ -39,7 +39,7 @@ export class GalleryListComponent implements OnInit, OnDestroy {
     private favouritesService: FavouritesService,
     private router: Router,
     private route: ActivatedRoute,
-    private logInService: LogInService,
+    private authService: AuthService,
     private usersService: UsersService,
   ) { }
 
@@ -51,7 +51,7 @@ export class GalleryListComponent implements OnInit, OnDestroy {
     this.currUsersIndex = this.usersService.getCurrUserArrIndex(); 
 
 
-    this.userSub = this.logInService.authUserSubject.subscribe(user => {
+    this.userSub = this.authService.authUserSubject.subscribe(user => {
       this.isLoggedIn = !!user;
     })    
 

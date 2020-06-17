@@ -1,5 +1,4 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
-import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { User } from './user.model';
 import { DataStorageService } from '../data-storage.service';
@@ -14,7 +13,9 @@ export class userResolver implements Resolve<User[]> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const users = this.usersService.getUsers();
 
-        if(users.length === 0) {
+        const currUser = this.usersService.getCurrentUser();
+
+        if(users.length === 0 && currUser) {
             return this.dataStorageService.retrieveUsers();
         }
 

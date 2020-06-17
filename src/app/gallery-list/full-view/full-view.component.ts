@@ -3,7 +3,7 @@ import { Image } from '../../shared/models/image.model';
 import { FavouritesService } from 'src/app/favourites/favourites.service';
 import { CommentsService } from '../../shared/comments/comments.service';
 import { Subscription } from 'rxjs';
-import { LogInService } from 'src/app/log-in/log-in.service';
+import { AuthService } from 'src/app/log-in/auth.service';
 
 @Component({
   selector: 'app-full-view',
@@ -15,7 +15,7 @@ export class FullViewComponent implements OnInit, OnDestroy {
   constructor(
     private favouritesService: FavouritesService, 
     private commentsService: CommentsService,
-    private logInService: LogInService
+    private authservice: AuthService
     ) { }
 
   @Input() image: Image;
@@ -36,7 +36,7 @@ export class FullViewComponent implements OnInit, OnDestroy {
     this.imageLikesNum(this.image.imagePath);
     this.testLikeOrLikes();
 
-    this.userSub = this.logInService.authUserSubject.subscribe(user => {
+    this.userSub = this.authservice.authUserSubject.subscribe(user => {
       this.isLoggedIn = !!user;
     })
   }

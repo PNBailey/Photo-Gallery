@@ -29,7 +29,7 @@ export class UsersService {
     getCurrUserArrIndex() {
 
         const user = this.getCurrentUser();
-
+        
         if(user) {
 
             const usersEmail = user.email;

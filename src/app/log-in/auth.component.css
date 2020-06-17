@@ -51,6 +51,10 @@
       margin: 10px 0;
       cursor: pointer;
   }
+
+  .password-reset-message {
+      background: grey;
+  }
   
   .error-message {
       margin: 10px 0 0 0;

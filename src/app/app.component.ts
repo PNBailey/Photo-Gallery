@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LogInService } from './log-in/log-in.service';
-import { DataStorageService } from './shared/data-storage.service';
-import { UsersService } from './shared/user/users.service';
+import { AuthService } from './log-in/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,18 +13,15 @@ export class AppComponent implements OnInit, OnDestroy {
   userSub: Subscription;
 
   constructor(
-    private logInService: LogInService, 
-    private dataStorageService: DataStorageService, 
-    ) {}
+    private authService: AuthService,
+  ) { }
 
-ngOnInit() {
-  this.logInService.autoLogin();
-  // this.userSub = this.dataStorageService.retrieveUsers().subscribe(() => {
-  // });
-}
+  ngOnInit() {
+    this.authService.autoLogin();
+  }
 
-ngOnDestroy() {
-this.userSub.unsubscribe();
-}
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
 
 }

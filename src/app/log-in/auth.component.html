@@ -9,23 +9,19 @@
             <label class="label-email" for="email">Email</label>
             <input type="text" id="email" name="email" formControlName="email">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" formControlName="password"
-                minlength="6">
+            <input type="password" id="password" name="password" formControlName="password" minlength="6">
             <button type="submit">Log in</button>
-            <button (click)="switchMode('signUp')" type="button">Switch to Sign
-                Up</button>
-            <a (click)="switchMode('forgottenPassword')" class="forgotten-password">Forgotten
-                Password</a>
+            <button (click)="switchMode('signUp')" type="button">Switch to Sign Up</button>
+            <a (click)="switchMode('forgottenPassword')" class="forgotten-password">Forgotten Password</a>
         </div>
 
         <!--Forgotten password screen-->
         <div *ngIf="mode === 'forgottenPassword'" class="log-in">
-            <label for="newPassword">New Password</label>
-            <input type="password" id="newPassword" name="newPassword"
-                formControlName="password">
+            <p class="password-reset-message" *ngIf="passwordResetEmailSent">Password reset link sent to your email</p>
+            <label class="label-email" for="email">Email</label>
+            <input type="text" id="email" name="email" formControlName="email">
             <button type="submit"> Submit </button>
-            <button (click)="switchMode('logIn')" type="button">Back to
-                Login</button>
+            <button (click)="switchMode('logIn')" type="button">Back to Login</button>
         </div>
 
         <!--Sign up screen-->
@@ -37,8 +33,7 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" formControlName="password">
             <button class="Log-in-btn" type="submit">Sign Up</button>
-            <button class="switch-btn" (click)="switchMode('logIn')" type="button">Switch to Log
-                in</button>
+            <button class="switch-btn" (click)="switchMode('logIn')" type="button">Switch to Log in</button>
         </div>
     </div>
 </form>

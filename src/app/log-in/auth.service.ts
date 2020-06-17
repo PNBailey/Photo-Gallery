@@ -3,9 +3,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from "rxjs/operators"; 
 import { AuthUser } from './auth-user.model';
-import { User } from '../shared/user/user.model';
 import { UsersService } from '../shared/user/users.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User } from '../shared/user/user.model';
+import { DataStorageService } from '../shared/data-storage.service';
 
 
 export interface AuthResponseData { 
@@ -21,7 +23,7 @@ export interface AuthResponseData {
 
 
 @Injectable({providedIn: 'root'})
-export class LogInService {
+export class AuthService {
 
     
 private tokenExpirationTimer: any; 
@@ -31,7 +33,8 @@ authUserSubject = new BehaviorSubject<AuthUser>(null);
 constructor(
     private http: HttpClient, 
     private usersService: UsersService, 
-    private router: Router
+    private router: Router,
+    private dataStorageService: DataStorageService
     ) {}
 
 returnSecureToken: true
@@ -110,6 +113,13 @@ returnSecureToken: true
         }));
     }
 
+    changePassword(email: string) {
+        return this.http.post<string>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCGXhYRL2Pon3byRqPaSxZPoXbrixG7qhA', {
+            requestType: "PASSWORD_RESET",
+            email: email
+        }).pipe(catchError(this.handleError));
+    }
+
 
     // Outsourced error handling to seperate method to use in http requests above
 
@@ -151,6 +161,37 @@ returnSecureToken: true
 
         this.autoLogout(expiresIn * 1000);
        
+    }
+
+    handleSubscriptionSuccess(mode: string, newUser: User) {
+        if(mode === 'logIn') {
+            this.router.navigate(['/gallery-list']);
+          } else if (mode === 'forgottenPassword') {
+            return true;
+          } else {
+            this.router.navigate(['/gallery-list']);
+            this.usersService.addUser(newUser);
+            this.dataStorageService.addUsers();
+          }
+    }
+
+    getFormGroup(mode: string) {
+        if(mode === 'logIn') {
+            return new FormGroup({
+                'email': new FormControl(null, [Validators.required, Validators.email]),
+                'password': new FormControl(null, [Validators.required])
+              })
+        } else if(mode === 'forgottenPassword') {
+            return new FormGroup({
+                'email': new FormControl(null, [Validators.required, Validators.email])
+              })
+        } else {
+            return new FormGroup({
+                'email': new FormControl(null, [Validators.required, Validators.email]),
+                'password': new FormControl(null, [Validators.required]),
+                'name': new FormControl(null, [Validators.required])
+              })
+        }
     }
 
 }
