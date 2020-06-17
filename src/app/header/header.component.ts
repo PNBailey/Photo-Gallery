@@ -4,7 +4,6 @@ import { AuthService } from '../log-in/auth.service';
 import { Router } from '@angular/router';
 import { GalleryListService } from '../gallery-list/gallery-list.service';
 import { FavouritesService } from '../favourites/favourites.service';
-import { Image } from '../shared/models/image.model';
 
 @Component({
   selector: 'app-header',
