@@ -29,10 +29,14 @@ export class FullViewComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
 
   ngOnInit() {
+    
     this.comments = this.commentsService.getImageComments(this.image.imagePath);
+
     this.commentsSub = this.commentsService.commentsUpdated.subscribe(newComment => {
       this.comments.push(newComment);
     })
+    
+
     this.imageLikesNum(this.image.imagePath);
     this.testLikeOrLikes();
 
