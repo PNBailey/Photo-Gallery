@@ -18,8 +18,6 @@ export class FavouritesService {
 
     filterFavouriteImages(images: Image[], users: User[], currUsersIndex: number) {
 
-        // const currUsersIndex = this.usersService.getCurrUserArrIndex();
-
         const FavouritesList = users[currUsersIndex].likes;
 
         this.filteredFavouriteImages = images.filter(e => FavouritesList.includes(e.imagePath))
@@ -30,11 +28,6 @@ export class FavouritesService {
 
     toggleLike(imageUrl: string, users: User[], currUsersIndex: number) {
 
-        //1. get current users index in the array
-        // const currUsersIndex = this.usersService.getCurrUserArrIndex();
-
-        //2. push new like into user service users array
-
         if (users[currUsersIndex].likes.indexOf(imageUrl) === -1) {
             users[currUsersIndex].likes.push(imageUrl);
         } else if (users[currUsersIndex].likes.indexOf(imageUrl) !== -1) {
@@ -42,19 +35,14 @@ export class FavouritesService {
             users[currUsersIndex].likes.splice(likedImageIndex, 1);
         }
 
-        //3. Update users
         this.usersService.setUsers(users);
 
-        //4. add new users array to firebase
         this.dataStorageService.addUsers();
 
-        //5. Get Images
         const images = this.gallerylistService.getImages();
 
-        //6. call filter method
         this.filterFavouriteImages(images, users, currUsersIndex);
 
-        //7. emit updated likes
         this.updateLikes.next(this.filteredFavouriteImages);
 
     }

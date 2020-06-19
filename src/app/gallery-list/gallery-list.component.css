@@ -46,7 +46,7 @@
 }
 
 .heart-icon-container {
-  grid-column: 1 / -1; /* this will overlap the overlay with the item img as we have placed both elements on the same row and column values */
+  grid-column: 1 / -1;
   grid-row: 1 / -1;
   background: none;
 }

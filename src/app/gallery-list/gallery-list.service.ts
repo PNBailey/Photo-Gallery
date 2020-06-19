@@ -1,8 +1,6 @@
 import { Image } from '../shared/models/image.model';
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
-import { UsersService } from '../shared/user/users.service';
-import { DataStorageService } from '../shared/data-storage.service';
+
 
 export interface imageFullViewData {
   imageArr: Image[];
@@ -13,7 +11,7 @@ export interface imageFullViewData {
 
 export class GalleryListService {
 
-  constructor(private usersService: UsersService, private dataStorageService: DataStorageService) {}
+  constructor() {}
 
     private images = [
         new Image('Man Praying', 1, 'Cambodia', 'Man praying to Sun', '£100', '../../assets/Images/Cambodia/Praying to the Sun.JPG', '250px', '330px', 'Landscape'),
