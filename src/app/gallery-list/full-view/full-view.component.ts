@@ -67,9 +67,9 @@ export class FullViewComponent implements OnInit, OnDestroy {
 
   testLikeOrLikes() {
     if(this.numOfLikes === 1) {
-      this.likeOrLikes = 'Like'
+      this.likeOrLikes = 'Like';
     } else {
-      this.likeOrLikes = 'Likes'
+      this.likeOrLikes = 'Likes';
     }
   }
 

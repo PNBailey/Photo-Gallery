@@ -40,12 +40,5 @@ export class DataStorageService {
         }));
     }
 
-    // retrieveLikedImages() {
-
-    //     const usersIndex = this.usersService.getCurrUserArrIndex();
-
-    //     return this.http.get<string[]>('https://photo-gallery-dd8b6.firebaseio.com/users/' + usersIndex + '/likes.json')
-
-    // }
-
+  
 }

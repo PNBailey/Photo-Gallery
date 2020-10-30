@@ -1,14 +1,11 @@
 import { User } from './user.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
-
-    constructor(private http: HttpClient) {}
 
     usersChanged = new Subject<User[]>();
 
