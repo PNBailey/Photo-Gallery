@@ -3,13 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { UsersService } from './user/users.service';
 import { User } from './user/user.model';
 import { map, tap } from 'rxjs/operators';
+import { Like } from './likes/like.model';
+import { FavouritesService } from '../favourites/favourites.service';
+import { FavouritesGetSetService } from '../favourites/favourites-get-set.service';
 
 @Injectable({providedIn: 'root'})
 
 
 export class DataStorageService {
 
-    constructor(private http: HttpClient, private usersService: UsersService) {}
+    constructor(private http: HttpClient, private usersService: UsersService, private favouritesgetSetService: FavouritesGetSetService) {}
 
     addUsers() {
 
@@ -36,6 +39,36 @@ export class DataStorageService {
         }), tap(users => {
 
             this.usersService.setUsers(users);
+
+        }));
+    }
+
+    addLikes(likes: Like[]) {
+        return this.http.put('https://photo-gallery-dd8b6.firebaseio.com/likes.json', likes)
+        
+        .subscribe(() => {
+        });
+    }
+
+    retrieveLikes() {
+        return this.http.get<Like[]>('https://photo-gallery-dd8b6.firebaseio.com/likes.json')
+
+        .pipe(map(likes => {
+            if(likes != null && likes) {
+                return likes.map(like => {
+
+                    return like;
+    
+                }
+            
+            )} else {
+                return [];
+            };
+
+
+        }), tap(likes => {
+
+            this.favouritesgetSetService.setAllLikes(likes);
 
         }));
     }

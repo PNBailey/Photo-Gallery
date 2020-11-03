@@ -1,6 +1,8 @@
+import { Image } from '../models/image.model';
+
 export class Like {
     constructor(
-        public imageUrl: string,
+        public image: Image,
         public email?: string
     ) {}
 }

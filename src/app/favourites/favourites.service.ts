@@ -1,65 +1,87 @@
 import { Injectable } from '@angular/core';
 import { UsersService } from '../shared/user/users.service';
-import { DataStorageService } from '../shared/data-storage.service';
 import { Image } from '../shared/models/image.model';
-import { GalleryListService } from '../gallery-list/gallery-list.service';
 import { Subject } from 'rxjs';
-import { User } from '../shared/user/user.model';
+import { Like } from '../shared/likes/like.model';
+import { DataStorageService } from '../shared/data-storage.service';
+import { FavouritesGetSetService } from './favourites-get-set.service';
 
 @Injectable({ providedIn: 'root' })
 
 export class FavouritesService {
 
-    filteredFavouriteImages: Image[]
+    filteredFavouriteImages: Image[];
 
-    updateLikes = new Subject<Image[]>();
+    updateLikes = new Subject<Like[]>();
 
-    constructor(private usersService: UsersService, private gallerylistService: GalleryListService, private dataStorageService: DataStorageService) { }
+    usersLikes: Like[] = [];
 
-    filterFavouriteImages(images: Image[], users: User[], currUsersIndex: number) {
 
-        const FavouritesList = users[currUsersIndex].likes;
+    constructor(private usersService: UsersService, private favouritesgetSetService: FavouritesGetSetService, private dataStorageService: DataStorageService) { }
 
-        this.filteredFavouriteImages = images.filter(e => FavouritesList.includes(e.imagePath))
+    filterFavouriteImages(images: Image[]) {
+
+        const likes = this.getUsersLikes().map(e => {
+            return e.image
+        });
+
+        this.filteredFavouriteImages = images.filter(image => likes.includes(image));
 
         return this.filteredFavouriteImages;
 
     }
 
-    toggleLike(imageUrl: string, users: User[], currUsersIndex: number) {
+    toggleLike(image: Image) {
 
-        if (users[currUsersIndex].likes.indexOf(imageUrl) === -1) {
-            users[currUsersIndex].likes.push(imageUrl);
-        } else if (users[currUsersIndex].likes.indexOf(imageUrl) !== -1) {
-            const likedImageIndex = users[currUsersIndex].likes.indexOf(imageUrl);
-            users[currUsersIndex].likes.splice(likedImageIndex, 1);
+        // 1. get users email address
+        const usersEmailAddress = this.usersService.getCurrentUser().email;
+
+        //2. get all likes
+        const allLikes = this.favouritesgetSetService.getAllLikes();
+
+        //3. get index of like where email and url match
+        const likeIndex = allLikes.findIndex(like => like.image.imagePath === image.imagePath && like.email === usersEmailAddress);
+
+        // 4. Determine if image url and users email address is found in array
+        if(likeIndex === -1) {
+
+        // 5. if it isn't found in array, add like to array
+        allLikes.push(new Like(image, usersEmailAddress));
+
+        }//6. if it is found in array, splice it from the array
+        else if (likeIndex != -1) {
+            allLikes.splice(likeIndex, 1);
         }
+        //7. call data storage method for adding likes and set the likes in our likes array
+        
+        this.favouritesgetSetService.setAllLikes(allLikes.slice());
+        this.dataStorageService.addLikes(this.favouritesgetSetService.getAllLikes());
 
-        this.usersService.setUsers(users);
+        //8 emit subject to display updated images
+        this.usersLikes = this.getUsersLikes();
+        this.updateLikes.next(this.usersLikes.slice());
+    }
 
-        this.dataStorageService.addUsers();
+    getUsersLikes(): Like[] {
+        const usersEmailAddress = this.usersService.getCurrentUser().email;
 
-        const images = this.gallerylistService.getImages();
+        const usersLikes = this.favouritesgetSetService.getAllLikes().filter(e => e.email === usersEmailAddress);
 
-        this.filterFavouriteImages(images, users, currUsersIndex);
-
-        this.updateLikes.next(this.filteredFavouriteImages);
-
+        return usersLikes;
     }
 
 
-    checkNumLikes(imageUrl: string): number {
+    checkNumLikes(image: Image): number {
 
-        const users = this.usersService.getUsers();
-
-        const allLikes = users.map(e => {
-            return e.likes;
-        })
-        const mergedLikes = [].concat.apply([], allLikes);
-
-        const imageLikes = mergedLikes.filter(e => imageUrl === e);
+        const allLikes = this.favouritesgetSetService.getAllLikes();
+    
+        const imageLikes = allLikes.filter(e => image.imagePath === e.image.imagePath);
 
         return imageLikes.length;
     }
+
+    
+
+
 
 }

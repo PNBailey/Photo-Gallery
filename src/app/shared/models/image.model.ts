@@ -1,3 +1,5 @@
+import { Like } from '../likes/like.model';
+
 export class Image {
   
     constructor(

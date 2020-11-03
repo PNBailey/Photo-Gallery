@@ -37,7 +37,7 @@ export class FullViewComponent implements OnInit, OnDestroy {
     })
     
 
-    this.imageLikesNum(this.image.imagePath);
+    this.imageLikesNum(this.image);
     this.testLikeOrLikes();
 
     this.userSub = this.authservice.authUserSubject.subscribe(user => {
@@ -49,8 +49,8 @@ export class FullViewComponent implements OnInit, OnDestroy {
     this.imageClosed.emit();
   }
 
-  imageLikesNum(imageUrl: string) {
-    this.numOfLikes = this.favouritesService.checkNumLikes(imageUrl);
+  imageLikesNum(image: Image) {
+    this.numOfLikes = this.favouritesService.checkNumLikes(image);
   }
 
   onComment(newComment: string, imageUrl: string) {

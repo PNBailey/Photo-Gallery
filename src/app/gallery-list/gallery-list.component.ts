@@ -8,6 +8,7 @@ import { FavouritesService } from './../favourites/favourites.service'
 import { AuthService } from '../log-in/auth.service';
 import { UsersService } from '../shared/user/users.service';
 import { User } from '../shared/user/user.model';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,10 +27,8 @@ export class GalleryListComponent implements OnInit, OnDestroy {
   userSub: Subscription;
   favouritesSub: Subscription;
   fullViewMode = false;
-  className: string;
   image: Image;
   isLiked = false;
-  favouriteImages: Image[];
   currUsersIndex: number;
   users: User[];
 
@@ -49,23 +48,22 @@ export class GalleryListComponent implements OnInit, OnDestroy {
     this.albumId = +this.route.snapshot.paramMap.get('albumId');
     this.users = this.usersService.getUsers();
     this.currUsersIndex = this.usersService.getCurrUserArrIndex(); 
-
-
+    
     this.userSub = this.authService.authUserSubject.subscribe(user => {
       this.isLoggedIn = !!user;
-    })    
+    })     
 
     if (this.albumId) {
 
       this.galleryList = this.albumsService.filterAlbumImages(this.albumId, this.images);
 
-    } else if (this.router.url.indexOf('/gallery-list/favourites') > -1) {
+    } else if (this.router.url.indexOf('/gallery-list/favourites') > -1) {   
+      
+        this.galleryList = this.favouritesService.getUsersLikes().map(e => e.image);
 
-     this.galleryList = this.favouritesService.filterFavouriteImages(this.images, this.users, this.currUsersIndex);
-
-     this.favouritesSub = this.favouritesService.updateLikes.subscribe(updatedLikes => {
-        this.galleryList = updatedLikes;
-      });  
+        this.favouritesSub = this.favouritesService.updateLikes.subscribe(updatedLikes => {
+          this.galleryList = updatedLikes.map(e => e.image);
+      });
 
     } else {
 
@@ -84,18 +82,22 @@ export class GalleryListComponent implements OnInit, OnDestroy {
     this.fullViewMode = false;
   }
 
-  updateLike(imageUrl: string) {
-    this.favouritesService.toggleLike(imageUrl, this.users, this.currUsersIndex);     
+  updateLike(image: Image) {
+    this.favouritesService.toggleLike(image);     
   }
 
-   checkLike(imageUrl: string): boolean {
+   checkLike(image: Image): boolean {
     
     if(this.isLoggedIn && this.currUsersIndex > -1) {
-      const FavouritesList = this.users[this.currUsersIndex].likes;
+      
+      const usersLikesImages = this.favouritesService.getUsersLikes().map(e => e.image.imagePath);
   
-      if(FavouritesList.includes(imageUrl)) {
+      if(usersLikesImages.includes(image.imagePath)) {
+      
           return true;
+
       } else {
+      
           return false;
       }
   }
