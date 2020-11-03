@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { userResolver } from '../shared/user/user-resolver.service';
 import { AuthGuard } from '../log-in/auth.guard';
 import { likesResolver } from '../shared/likes/likes-resolver.service'
+import { CommentsResolver } from '../shared/comments/comments-resolver.service';
 
 
 @NgModule({
@@ -16,9 +17,9 @@ import { likesResolver } from '../shared/likes/likes-resolver.service'
     imports: [
         CommonModule,
         RouterModule.forChild([
-            { path: 'gallery-list', component: GalleryListComponent, resolve: [userResolver, likesResolver]},
+            { path: 'gallery-list', component: GalleryListComponent, resolve: [userResolver, likesResolver, CommentsResolver]},
             { path: 'albums/:albumId', component: GalleryListComponent, resolve: [userResolver]},
-            { path: 'gallery-list/favourites', component: GalleryListComponent, canActivate: [AuthGuard], resolve: [userResolver, likesResolver]}
+            { path: 'gallery-list/favourites', component: GalleryListComponent, canActivate: [AuthGuard], resolve: [userResolver, likesResolver, CommentsResolver]}
         ])
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
