@@ -63,6 +63,7 @@ export class GalleryListComponent implements OnInit, OnDestroy {
 
         this.favouritesSub = this.favouritesService.updateLikes.subscribe(updatedLikes => {
           this.galleryList = updatedLikes.map(e => e.image);
+          
       });
 
     } else {

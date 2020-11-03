@@ -4,6 +4,7 @@ import { FavouritesService } from 'src/app/favourites/favourites.service';
 import { CommentsService } from '../../shared/comments/comments.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/log-in/auth.service';
+import { CommentsGetSetService } from 'src/app/shared/comments/commentsGetSet.service';
 
 @Component({
   selector: 'app-full-view',
@@ -15,7 +16,8 @@ export class FullViewComponent implements OnInit, OnDestroy {
   constructor(
     private favouritesService: FavouritesService, 
     private commentsService: CommentsService,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private commentsGetSetService: CommentsGetSetService
     ) { }
 
   @Input() image: Image;
@@ -30,7 +32,7 @@ export class FullViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     
-    this.comments = this.commentsService.getImageComments(this.image.imagePath);
+    this.comments = this.commentsGetSetService.getAllImageComments(this.image.imagePath);
 
     this.commentsSub = this.commentsService.commentsUpdated.subscribe(newComment => {
       this.comments.push(newComment);
