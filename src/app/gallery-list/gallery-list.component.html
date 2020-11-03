@@ -1,11 +1,11 @@
 <app-full-view *ngIf="fullViewMode" [image]="image" (imageClosed)="onImageClose()"></app-full-view>
 <div class="gallery-container">
   <div class="image-container" *ngFor="let image of galleryList" [ngClass]="generatingClassName(image)">
-    <div *ngIf="checkLike(image.imagePath) && isLoggedIn" class="heart-icon-container">
-      <ion-icon name="heart" class="heart-icon" (click)="updateLike(image.imagePath)"></ion-icon>
+    <div *ngIf="checkLike(image) && isLoggedIn" class="heart-icon-container">
+      <ion-icon name="heart" class="heart-icon" (click)="updateLike(image)"></ion-icon>
     </div>
-    <div *ngIf="!checkLike(image.imagePath) && isLoggedIn" class="heart-icon-container">
-      <ion-icon name="heart-outline" class="heart-icon" (click)="updateLike(image.imagePath)"></ion-icon>
+    <div *ngIf="!checkLike(image) && isLoggedIn" class="heart-icon-container">
+      <ion-icon name="heart-outline" class="heart-icon" (click)="updateLike(image)"></ion-icon>
     </div>
     <img [src]="image.imagePath" alt="Praying to the Sun" class="image" (click)="onImageSelected(image)">
   </div>
